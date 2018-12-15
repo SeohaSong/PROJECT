@@ -2,4 +2,4 @@
 
 ## list
 
-1. [Video-to-Video Synthesis](./reviews/01)
+1. [Video-to-Video Synthesis](./reviews/01) (3 Dec 2018)
