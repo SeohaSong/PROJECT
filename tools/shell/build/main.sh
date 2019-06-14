@@ -6,13 +6,12 @@
             www_path=$HOME_PATH/SEOHASONG/SEOHASONG.GITHUB.IO/${PWD##*/}
             old_files=$( ls $www_path | grep -v ^google.*'\.'html$ || : )
         elif [ -d "$1" ]; then
-            www_path=$1
+            www_path=${1%'/'}
             old_files=$( ls $www_path | grep -v ^google.*'\.'html$ || : )
             old_files=$( echo "$old_files" | grep -v ^CNAME$ || : )
         fi
         [ -d "$www_path" ]
         cd client
-        ! [ -d dist ] || rm -r dist
         npm run build:ssr
         node dist/prerender
         # ng build --base-href /DSBA/ --prod && ng run client:server
@@ -26,8 +25,9 @@
         for name in $old_files; do
             rm -r $www_path/$name
         done
-        client_path=client/dist/browser
-        cp -r $client_path/* $www_path
+        dist_path=client/dist
+        cp -r $dist_path/browser/* $www_path
+        rm -r $dist_path
         (
             cd $www_path
             git checkout master
