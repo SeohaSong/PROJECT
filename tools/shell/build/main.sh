@@ -10,6 +10,7 @@
             old_files=$( ls $www_path | grep -v ^google.*'\.'html$ || : )
             old_files=$( echo "$old_files" | grep -v ^CNAME$ || : )
         fi
+        [ -d "$www_path" ]
         cd client
         ! [ -d dist ] || rm -r dist
         npm run build:ssr
