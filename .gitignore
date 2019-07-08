@@ -3,6 +3,7 @@
 *nohup.out
 *.ipynb_checkpoints
 *__pycache__
+*debug.log
 
 .vscode
 
